@@ -45,6 +45,7 @@ define pm3::instance ( $port,
                       mode   => 2770,
                       owner  => 'plone_daemon',
                       group  => 'plone_group',
+                      require => Plone::Instance["$name"],
                     }
                   )
 
@@ -55,6 +56,7 @@ define pm3::instance ( $port,
                       owner   => 'plone_buildout',
                       group   => 'plone_group',
                       content => "# sitecustomize.py\nimport sys\nsys.setdefaultencoding('utf-8')",
+                      require => Plone::Instance["$name"],
                     }
                   ) 
 
