@@ -4,7 +4,8 @@ define pm3::instance ( $port,
                        $zeo_ip,
                        $zeo_port,
                        $install_dir = '/srv/plone',
-                       $blobdir = '${buildout:directory}/var/blobstorage',
+                       $blobdir     = '${buildout:directory}/var/blobstorage',
+                       $shared_blob = 'off', 
                       ) {
   include pm3::core
 
@@ -37,6 +38,7 @@ define pm3::instance ( $port,
                           'zope_i18n_allowed_languages en, es, pt_BR',
                           'zope_i18n_compile_mo_files true',
                         ],
+                        shared-blob => $shared_blob,
                       },
   }
 
