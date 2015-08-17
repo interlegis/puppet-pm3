@@ -1,4 +1,5 @@
 # appserver.pp
+# requires https://github.com/interlegis/puppet-plone.git
 
 class pm3::appserver ( $numberInstances = 2,  # Number of zope instances deployed
                        $zeo_ip = '127.0.0.1', # IP Address of the ZEO server
