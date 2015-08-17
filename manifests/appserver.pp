@@ -1,9 +1,10 @@
 # appserver.pp
 # requires https://github.com/interlegis/puppet-plone.git
 
-class pm3::appserver ( $numberInstances = 2,  # Number of zope instances deployed
-                       $zeo_ip = '127.0.0.1', # IP Address of the ZEO server
-                       $zeo_port = '8100'     # Port number of the ZEO server
+class pm3::appserver ( $numberInstances = 2,           # Number of zope instances deployed
+                       $zeo_ip          = '127.0.0.1', # IP Address of the ZEO server
+                       $zeo_port        = '8100',      # Port number of the ZEO server
+                       $default_portal  = true,        # Whether to add a default Plone Site
                      ) {
 
   class { "plone":
@@ -15,8 +16,9 @@ class pm3::appserver ( $numberInstances = 2,  # Number of zope instances deploye
 
   $instNos = range("0", "${numberInstances-1}")
   
-  $staticParam = { zeo_ip => $zeo_ip,
-                   zeo_port => $zeo_port,
+  $staticParam = { zeo_ip         => $zeo_ip,
+                   zeo_port       => $zeo_port,
+                   default_portal => $default_portal,
                   }
   $dynParam = { port => "81%02d" }
   $instHash = create_resources_hash_from( "pm3Inst%s", 

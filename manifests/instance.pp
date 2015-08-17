@@ -3,9 +3,10 @@
 define pm3::instance ( $port,
                        $zeo_ip,
                        $zeo_port,
-                       $install_dir = '/srv/plone',
-                       $blobdir     = '${buildout:directory}/var/blobstorage',
-                       $shared_blob = 'off', 
+                       $install_dir    = '/srv/plone',
+                       $blobdir        = '${buildout:directory}/var/blobstorage',
+                       $shared_blob    = 'off',
+                       $default_portal = false, 
                       ) {
   include pm3::core
 
@@ -61,6 +62,16 @@ define pm3::instance ( $port,
                       content => "# sitecustomize.py\nimport sys\nsys.setdefaultencoding('utf-8')",
                       require => Plone::Instance["$name"],
                     }
-                  ) 
+                  )
+
+  if $default_portal {
+    ensure_resource ( 'pm3::portal',
+                      'portal',
+                      { instance_name => "$name",
+                        instance_port => "$port",
+                        install_dir   => "${install_dir}",
+                      }
+                    )
+  } 
 
 }
