@@ -7,6 +7,7 @@ define pm3::dbinstance ( $type          = 'primary',
                          $blobdir       = '${buildout:directory}/var/blobstorage',
                          $backups_dir   = '',
                          $invalid_queue = '100',
+                         $pack_days     = '7',
                        ) {
 
   plone::zeo { "$name":
@@ -15,7 +16,8 @@ define pm3::dbinstance ( $type          = 'primary',
     zrs_repl_host   => "${zrs_repl_ip}:${zrs_repl_port}",
     blobstorage_dir => $blobdir,
     backups_dir     => $backups_dir,
-    invalid_queue   => $invalid_queue, 
+    invalid_queue   => $invalid_queue,
+    pack_days       => $pack_days, 
   }
   
 }
