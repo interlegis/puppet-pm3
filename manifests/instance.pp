@@ -68,14 +68,14 @@ define pm3::instance ( $port,
                   )
 
   if $default_portal {
-    ensure_resource ( 'pm3::portal',
-                      'portal',
-                      { instance_name  => "$name",
-                        instance_port  => "$port",
-                        install_dir    => "${install_dir}",
-                        upgrade_portal => true,
-                      }
-                    )
+    if !defined (Pm3::Portal['portal']) {
+      pm3::portal { 'portal':
+        instance_name  => "$name",
+        instance_port  => "$port",
+        install_dir    => "${install_dir}",
+        upgrade_portal => true,
+      }
+    }
   } 
 
 }
