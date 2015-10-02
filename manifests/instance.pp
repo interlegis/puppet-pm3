@@ -67,7 +67,7 @@ define pm3::instance ( $port,
                     }
                   )
 
-  if $default_portal {
+  if $default_portal != false and $default_portal != 'false' {
     if !defined (Pm3::Portal['portal']) {
       pm3::portal { 'portal':
         instance_name  => "$name",
