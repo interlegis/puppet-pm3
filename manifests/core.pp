@@ -10,6 +10,7 @@ class pm3::core {
                     'readline-common',
                     'python-imaging',
                     'python-docutils',
+                    'python-psycopg2',
                     'xlhtml',
                     'xpdf', 
                     'xsltproc',
