@@ -19,6 +19,9 @@ class pm3::core {
                     'poppler-utils',
                     'wv',
                     'unzip',
+                    'lynx',
+                    'links',
+                    'elinks'
                   ]
   package { $sys_packages: ensure => "installed" }
 
